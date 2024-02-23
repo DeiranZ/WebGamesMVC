@@ -12,6 +12,12 @@ namespace WebGames.MVC.Controllers
         {
             this.gameService = gameService;
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(Game game)
         {
