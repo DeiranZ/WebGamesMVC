@@ -1,4 +1,5 @@
 using WebGames.Infrastructure.Extensions;
+using WebGames.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
+
+IServiceScope scope = app.Services.CreateScope();
+GameSeeder seeder = scope.ServiceProvider.GetService<GameSeeder>()!;
+await seeder.Seed();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

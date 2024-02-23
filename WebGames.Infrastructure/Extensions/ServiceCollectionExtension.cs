@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebGames.Infrastructure.Persistence;
+using WebGames.Infrastructure.Seeders;
 
 namespace WebGames.Infrastructure.Extensions
 {
@@ -11,6 +12,8 @@ namespace WebGames.Infrastructure.Extensions
         {
             services.AddDbContext<WebGamesDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("WebGames")));
+
+            services.AddScoped<GameSeeder>();
         }
     }
 }
