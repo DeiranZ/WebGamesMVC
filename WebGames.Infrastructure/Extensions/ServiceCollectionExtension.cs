@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebGames.Domain.Interfaces;
 using WebGames.Infrastructure.Persistence;
+using WebGames.Infrastructure.Repositories;
 using WebGames.Infrastructure.Seeders;
 
 namespace WebGames.Infrastructure.Extensions
@@ -14,6 +16,7 @@ namespace WebGames.Infrastructure.Extensions
                 configuration.GetConnectionString("WebGames")));
 
             services.AddScoped<GameSeeder>();
+            services.AddScoped<IGameRepository, GameRepository>();
         }
     }
 }
