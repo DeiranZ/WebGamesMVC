@@ -1,9 +1,9 @@
-﻿using WebGames.Domain.Entities;
+﻿using WebGames.Application.Game;
 
 namespace WebGames.Application.Services
 {
     public interface IGameService
     {
-        Task Create(Game game);
+        Task Create(GameDto game);
     }
 }

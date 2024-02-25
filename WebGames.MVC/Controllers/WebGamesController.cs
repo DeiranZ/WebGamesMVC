@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebGames.Application.Game;
 using WebGames.Application.Services;
-using WebGames.Domain.Entities;
 
 namespace WebGames.MVC.Controllers
 {
@@ -19,7 +19,7 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Game game)
+        public async Task<IActionResult> Create(GameDto game)
         {
             await gameService.Create(game);
             return RedirectToAction(nameof(Create)); // TODO: refactor
