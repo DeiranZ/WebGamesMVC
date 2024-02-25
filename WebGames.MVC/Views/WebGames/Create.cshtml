@@ -1,4 +1,7 @@
-﻿<h1>Add a new game</h1>
+﻿@using WebGames.Application.Game
+@model GameDto
+
+<h1>Add a new game</h1>
 
 <hr/>
 
@@ -6,18 +9,21 @@
 	<div class="col-md-4">
 		<form action="/WebGames/Create" method="post">
 			<div class="form-group mb-3">
-				<label class="control-label" for="Name">Name</label>
-				<input class="form-control" type="text" id="Name" name="Name" />
+				<label class="control-label" asp-for="Name">Name</label>
+				<input class="form-control" type="text" asp-for="Name" />
+				<span asp-validation-for="Name" class="text-danger"></span>
 			</div>
 
 			<div class="form-group mb-3">
-				<label class="control-label" for="Description">Description</label>
-				<input class="form-control" type="text" id="Description" name="Description" />
+				<label class="control-label" asp-for="Description">Description</label>
+				<input class="form-control" type="text" asp-for="Description" />
+				<span asp-validation-for="Description" class="text-danger"></span>
 			</div>
 
 			<div class="form-group mb-3">
-				<label class="control-label" for="Source">Source</label>
-				<input class="form-control" type="text" id="Source" name="Source" />
+				<label class="control-label" asp-for="Source">Source</label>
+				<input class="form-control" type="text" asp-for="Source" />
+				<span asp-validation-for="Source" class="text-danger"></span>
 			</div>
 
 			<div class="form-group mb-3">
@@ -26,3 +32,9 @@
 		</form>
 	</div>
 </div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

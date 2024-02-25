@@ -4,6 +4,7 @@ namespace WebGames.Domain.Interfaces
 {
     public interface IGameRepository
     {
-        public Task Create(Game game);
+        Task Create(Game game);
+        Task<Game?> GetByName(string name);
     }
 }

@@ -21,6 +21,8 @@ namespace WebGames.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(GameDto game)
         {
+            if (ModelState.IsValid == false) return View(game);
+
             await gameService.Create(game);
             return RedirectToAction(nameof(Create)); // TODO: refactor
         }

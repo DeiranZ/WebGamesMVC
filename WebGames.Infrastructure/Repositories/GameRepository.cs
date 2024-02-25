@@ -1,4 +1,5 @@
-﻿using WebGames.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using WebGames.Domain.Entities;
 using WebGames.Domain.Interfaces;
 using WebGames.Infrastructure.Persistence;
 
@@ -17,5 +18,10 @@ namespace WebGames.Infrastructure.Repositories
             dbContext.Add(game);
             await dbContext.SaveChangesAsync();
         }
-    }
+
+		public async Task<Game?> GetByName(string name)
+		{
+			return await dbContext.Games.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
+		}
+	}
 }
