@@ -19,9 +19,15 @@ namespace WebGames.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
+		public async Task<IEnumerable<Game>> GetAll()
+		{
+			return await dbContext.Games.ToListAsync();
+		}
+
 		public async Task<Game?> GetByName(string name)
 		{
 			return await dbContext.Games.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
 		}
+
 	}
 }

@@ -7,6 +7,8 @@ namespace WebGames.Application.Mappings
         public GameMappingProfile()
         {
             CreateMap<Application.Game.GameDto, Domain.Entities.Game>();
+
+            CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
         }
     }
 }

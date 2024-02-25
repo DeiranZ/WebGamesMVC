@@ -22,5 +22,13 @@ namespace WebGames.Application.Services
             newGame.EncodeName();
             await gameRepository.Create(newGame);
         }
-    }
+
+		public async Task<IEnumerable<GameDto>> GetAll()
+		{
+            var games = await gameRepository.GetAll();
+            var gameDtos = mapper.Map<IEnumerable<GameDto>>(games);
+
+            return gameDtos;
+		}
+	}
 }

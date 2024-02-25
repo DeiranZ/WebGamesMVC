@@ -6,5 +6,6 @@ namespace WebGames.Domain.Interfaces
     {
         Task Create(Game game);
         Task<Game?> GetByName(string name);
+        Task<IEnumerable<Game>> GetAll();
     }
 }

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WebGames.Application.Game.GameDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-12">Games!</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add a new Game!</a>
+</p>
+
+<div class="row">
+@foreach (var item in Model) {
+        <div class="card m-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description</p>
+                <a href="#" class="btn btn-primary">Details</a>
+                <a href="#" class="btn btn-secondary">Edit</a>
+            </div>
+        </div>
+}
+</div>

@@ -13,6 +13,12 @@ namespace WebGames.MVC.Controllers
             this.gameService = gameService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var games = await gameService.GetAll();
+            return View(games);
+        }
+
         public IActionResult Create()
         {
             return View();
@@ -24,7 +30,7 @@ namespace WebGames.MVC.Controllers
             if (ModelState.IsValid == false) return View(game);
 
             await gameService.Create(game);
-            return RedirectToAction(nameof(Create)); // TODO: refactor
+            return RedirectToAction(nameof(Index));
         }
     }
 }
