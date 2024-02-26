@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace WebGames.Infrastructure.Users
+namespace WebGames.Domain.ApplicationUser
 {
     public class ApplicationUser : IdentityUser
     {

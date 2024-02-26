@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using WebGames.Infrastructure.Persistence;
-using WebGames.Infrastructure.Users;
+using WebGames.Domain.ApplicationUser;
 
 namespace WebGames.Infrastructure.Seeders
 {

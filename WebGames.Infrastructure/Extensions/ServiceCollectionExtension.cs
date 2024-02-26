@@ -5,7 +5,7 @@ using WebGames.Domain.Interfaces;
 using WebGames.Infrastructure.Persistence;
 using WebGames.Infrastructure.Repositories;
 using WebGames.Infrastructure.Seeders;
-using WebGames.Infrastructure.Users;
+using WebGames.Domain.ApplicationUser;
 
 namespace WebGames.Infrastructure.Extensions
 {

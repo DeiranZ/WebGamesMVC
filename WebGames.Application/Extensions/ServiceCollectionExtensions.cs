@@ -4,6 +4,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using WebGames.Application.Game.Commands.CreateGame;
 using System.Reflection;
+using WebGames.Application.ApplicationUser;
 
 namespace WebGames.Application.Extensions
 {
@@ -11,6 +12,8 @@ namespace WebGames.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
+            services.AddScoped<IUserContext, UserContext>();
+
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             
             services.AddAutoMapper(typeof(GameMappingProfile));

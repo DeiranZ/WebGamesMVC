@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebGames.Application.Game;
 using WebGames.Application.Game.Commands.CreateGame;
@@ -78,13 +79,15 @@ namespace WebGames.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateGameCommand model)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Create(CreateGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WebGames.Domain.Entities;
-using WebGames.Infrastructure.Users;
+using WebGames.Domain.ApplicationUser;
 
 namespace WebGames.Infrastructure.Persistence
 {
