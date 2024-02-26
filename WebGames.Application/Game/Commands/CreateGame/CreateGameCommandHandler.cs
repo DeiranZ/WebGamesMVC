@@ -20,9 +20,16 @@ namespace WebGames.Application.Game.Commands.CreateGame
 
         public async Task Handle(CreateGameCommand request, CancellationToken cancellationToken)
         {
+            var currentUser = userContext.GetCurrentUser();
+
+            if (currentUser == null || (currentUser.IsInRole("Admin") && currentUser.IsInRole("Moderator")))
+            {
+                return;
+            }
+
             var newGame = mapper.Map<Domain.Entities.Game>(request);
 
-            newGame.CreatedById = userContext.GetCurrentUser().Id;
+            newGame.CreatedById = currentUser.Id;
 
             newGame.EncodeName();
             await gameRepository.Create(newGame);

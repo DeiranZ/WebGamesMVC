@@ -28,6 +28,11 @@ namespace WebGames.MVC.Controllers
             return View(games);
         }
 
+        public IActionResult NoAccess()
+        {
+            return View();
+        }
+
         [Route("Home")]
         public IActionResult Logout()
         {
@@ -42,9 +47,15 @@ namespace WebGames.MVC.Controllers
         }
 
         [Route("{encodedName}/edit")]
-        public async Task<IActionResult> Edit(string encodedName)
+		[Authorize(Roles = "Admin, Moderator")]
+		public async Task<IActionResult> Edit(string encodedName)
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
+
+            if (dto.IsEditable == false)
+            {
+                return RedirectToAction("NoAccess", "WebGames");
+            }
 
             EditGameCommand model = mapper.Map<EditGameCommand>(dto);
             return View(model);
@@ -52,7 +63,8 @@ namespace WebGames.MVC.Controllers
 
         [HttpPost]
         [Route("{encodedName}/edit")]
-        public async Task<IActionResult> Edit(EditGameCommand model)
+		[Authorize(Roles = "Admin, Moderator")]
+		public async Task<IActionResult> Edit(EditGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 
@@ -61,17 +73,24 @@ namespace WebGames.MVC.Controllers
         }
 
         [Route("{encodedName}/delete")]
-        public async Task<IActionResult> Delete(string encodedName)
+		[Authorize(Roles = "Admin, Moderator")]
+		public async Task<IActionResult> Delete(string encodedName)
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
 
-            DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
+			if (dto.IsEditable == false)
+			{
+				return RedirectToAction("NoAccess", "WebGames");
+			}
+
+			DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
             return View(model);
         }
         
         [HttpPost]
         [Route("{encodedName}/delete")]
-        public async Task<IActionResult> Delete(DeleteGameCommand model)
+		[Authorize(Roles = "Admin, Moderator")]
+		public async Task<IActionResult> Delete(DeleteGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 
@@ -79,14 +98,14 @@ namespace WebGames.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-		[Authorize(Roles = "Admin")]
+		[Authorize(Roles = "Admin, Moderator")]
 		public async Task<IActionResult> Create(CreateGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);

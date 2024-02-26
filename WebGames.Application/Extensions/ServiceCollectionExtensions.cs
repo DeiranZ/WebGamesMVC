@@ -5,6 +5,7 @@ using FluentValidation.AspNetCore;
 using WebGames.Application.Game.Commands.CreateGame;
 using System.Reflection;
 using WebGames.Application.ApplicationUser;
+using AutoMapper;
 
 namespace WebGames.Application.Extensions
 {
@@ -15,8 +16,14 @@ namespace WebGames.Application.Extensions
             services.AddScoped<IUserContext, UserContext>();
 
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            
-            services.AddAutoMapper(typeof(GameMappingProfile));
+
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                var scope = provider.CreateScope();
+                var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
+                cfg.AddProfile(new GameMappingProfile(userContext));
+            }).CreateMapper()
+            );
 
             services.AddValidatorsFromAssemblyContaining<CreateGameCommandValidator>()
                 .AddFluentValidationAutoValidation()

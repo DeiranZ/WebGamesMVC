@@ -10,6 +10,9 @@
 <div class="d-flex justify-content-center m-5"><script src="@Model.Source"></script></div>
 
 <div>
-    <a class="btn btn-primary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
+    @if (Model.IsEditable)
+    {
+        <a class="btn btn-primary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
+    }
     <a asp-action="Index" class="btn btn-primary">Back to Games</a>
 </div>

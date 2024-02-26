@@ -6,6 +6,7 @@ using WebGames.Infrastructure.Persistence;
 using WebGames.Infrastructure.Repositories;
 using WebGames.Infrastructure.Seeders;
 using WebGames.Domain.ApplicationUser;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebGames.Infrastructure.Extensions
 {
@@ -17,6 +18,7 @@ namespace WebGames.Infrastructure.Extensions
                 configuration.GetConnectionString("WebGames")));
 
             services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<WebGamesDbContext>();
 
             services.AddScoped<GameSeeder>();
