@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using WebGames.Application.Game;
+using WebGames.Application.Game.Commands.EditGame;
 
 namespace WebGames.Application.Mappings
 {
@@ -9,6 +11,8 @@ namespace WebGames.Application.Mappings
             CreateMap<Application.Game.GameDto, Domain.Entities.Game>();
 
             CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
+
+            CreateMap<GameDto, EditGameCommand>();
         }
     }
 }

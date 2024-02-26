@@ -13,6 +13,12 @@ namespace WebGames.Infrastructure.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public Task Commit()
+        {
+            return dbContext.SaveChangesAsync();
+        }
+
         public async Task Create(Game game)
         {
             dbContext.Add(game);
@@ -24,7 +30,12 @@ namespace WebGames.Infrastructure.Repositories
 			return await dbContext.Games.ToListAsync();
 		}
 
-		public async Task<Game?> GetByName(string name)
+        public async Task<Game?> GetByEncodedName(string encodedName)
+        {
+            return await dbContext.Games.FirstAsync(c => c.EncodedName == encodedName);
+        }
+
+        public async Task<Game?> GetByName(string name)
 		{
 			return await dbContext.Games.FirstOrDefaultAsync(x => x.Name.ToLower() == name.ToLower());
 		}

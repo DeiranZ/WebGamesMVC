@@ -1,0 +1,15 @@
+﻿@model WebGames.Application.Game.GameDto
+
+@{
+    ViewData["Title"] = "Play";
+}
+
+<h1>@Model.Name</h1>
+<h4>@Model.Description</h4>
+
+<div><script src="@Model.Source"></script></div>
+
+<div>
+    <a class="btn btn-primary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
+    <a asp-action="Index" class="btn btn-primary">Back to Games</a>
+</div>

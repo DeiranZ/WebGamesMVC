@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1 class="mb-12">Games!</h1>
+<h1 class="mb-12">All Games</h1>
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Add a new Game!</a>
@@ -16,8 +16,8 @@
             <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <p class="card-text">@item.Description</p>
-                <a href="#" class="btn btn-primary">Details</a>
-                <a href="#" class="btn btn-secondary">Edit</a>
+                <a class="btn btn-primary asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
+                <a class="btn btn-secondary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
             </div>
         </div>
 }
