@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using WebGames.Application.Game;
 using WebGames.Application.Mappings;
-using WebGames.Application.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using WebGames.Application.Game.Commands.CreateGame;
+using System.Reflection;
 
 namespace WebGames.Application.Extensions
 {
@@ -11,11 +11,11 @@ namespace WebGames.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IGameService, GameService>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             
             services.AddAutoMapper(typeof(GameMappingProfile));
 
-            services.AddValidatorsFromAssemblyContaining<GameDtoValidator>()
+            services.AddValidatorsFromAssemblyContaining<CreateGameCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
         }

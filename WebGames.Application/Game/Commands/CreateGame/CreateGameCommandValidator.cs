@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using WebGames.Domain.Interfaces;
 
-namespace WebGames.Application.Game
+namespace WebGames.Application.Game.Commands.CreateGame
 {
-	public class GameDtoValidator : AbstractValidator<GameDto>
-	{
-        public GameDtoValidator(IGameRepository repository)
+    public class CreateGameCommandValidator : AbstractValidator<CreateGameCommand>
+    {
+        public CreateGameCommandValidator(IGameRepository repository)
         {
             RuleFor(p => p.Name)
                 .NotEmpty()
@@ -14,7 +14,7 @@ namespace WebGames.Application.Game
                 .Custom((value, context) =>
                 {
                     var existingGame = repository.GetByName(value).Result;
-                    if (existingGame != null) 
+                    if (existingGame != null)
                     {
                         context.AddFailure("A game with this name already exists.");
                     }

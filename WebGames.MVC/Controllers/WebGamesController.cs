@@ -1,21 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using WebGames.Application.Game;
-using WebGames.Application.Services;
+using WebGames.Application.Game.Commands.CreateGame;
+using WebGames.Application.Game.Queries.GetAllGames;
 
 namespace WebGames.MVC.Controllers
 {
     public class WebGamesController : Controller
     {
-        private readonly IGameService gameService;
+        private readonly IMediator mediator;
 
-        public WebGamesController(IGameService gameService)
+        public WebGamesController(IMediator mediator)
         {
-            this.gameService = gameService;
+            this.mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var games = await gameService.GetAll();
+            var games = await mediator.Send(new GetAllGamesQuery());
             return View(games);
         }
 
@@ -25,11 +27,11 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(GameDto game)
+        public async Task<IActionResult> Create(CreateGameCommand model)
         {
-            if (ModelState.IsValid == false) return View(game);
+            if (ModelState.IsValid == false) return View(model);
 
-            await gameService.Create(game);
+            await mediator.Send(model);
             return RedirectToAction(nameof(Index));
         }
     }
