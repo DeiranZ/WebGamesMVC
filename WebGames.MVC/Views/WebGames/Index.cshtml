@@ -1,4 +1,5 @@
-﻿@model IEnumerable<WebGames.Application.Game.GameDto>
+﻿@using System.Security.Claims;
+@model IEnumerable<WebGames.Application.Game.GameDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,23 +8,34 @@
 <h1 class="mb-12">All Games</h1>
 
 <p>
-    @if (Model.ElementAt(0).IsEditable)
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <a asp-action="Create" class="btn btn-primary">Add a new Game!</a>
+        <div class="card">
+            <div class="card-header">
+                Moderation Panel
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Welcome, @User.Identity?.Name!</h5>
+                <a asp-action="Create" class="btn btn-primary col-md-3">Add a new Game!</a>
+            </div>
+        </div>
     }
 </p>
 
 <div class="row">
 @foreach (var item in Model) {
-        <div class="card m-3" style="width: 18rem;">
+        <div class="card m-3" style="width: 18rem;" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">
+            <img class="card-img-top" src="@item.ImageSource" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <p class="card-text">@item.Description</p>
-                <a class="btn btn-primary asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
-                @if (item.IsEditable)
-                {
-                    <a class="btn btn-secondary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
-                }
+                <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
+            </div>
+            <div style="z-index:3; position:relative; align-self: center;" class="card-footer">
+            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                <a class="btn btn-secondary" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
+            }
             </div>
         </div>
 }

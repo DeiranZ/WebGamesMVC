@@ -14,8 +14,7 @@ namespace WebGames.Application.Mappings
 
             CreateMap<Application.Game.GameDto, Domain.Entities.Game>();
 
-            CreateMap<Domain.Entities.Game, Application.Game.GameDto>()
-                .ForMember(dto => dto.IsEditable, opt => opt.MapFrom(src => user != null && (user.IsInRole("Admin") || user.IsInRole("Moderator"))));
+            CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
 
             CreateMap<GameDto, EditGameCommand>();
             

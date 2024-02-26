@@ -10,9 +10,9 @@
 <div class="d-flex justify-content-center m-5"><script src="@Model.Source"></script></div>
 
 <div>
-    @if (Model.IsEditable)
+    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <a class="btn btn-primary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
+        <a class="btn btn-secondary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
     }
     <a asp-action="Index" class="btn btn-primary">Back to Games</a>
 </div>

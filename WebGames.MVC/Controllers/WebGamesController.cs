@@ -52,11 +52,6 @@ namespace WebGames.MVC.Controllers
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
 
-            if (dto.IsEditable == false)
-            {
-                return RedirectToAction("NoAccess", "WebGames");
-            }
-
             EditGameCommand model = mapper.Map<EditGameCommand>(dto);
             return View(model);
         }
@@ -77,11 +72,6 @@ namespace WebGames.MVC.Controllers
 		public async Task<IActionResult> Delete(string encodedName)
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
-
-			if (dto.IsEditable == false)
-			{
-				return RedirectToAction("NoAccess", "WebGames");
-			}
 
 			DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
             return View(model);

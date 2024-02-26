@@ -29,6 +29,7 @@ namespace WebGames.Application.Game.Commands.EditGame
 
             game!.Description = request.Description;
             game.Source = request.Source;
+            game.ImageSource = request.ImageSource;
 
             await gameRepository.Commit();
         }
