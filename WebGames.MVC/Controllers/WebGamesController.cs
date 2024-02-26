@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebGames.Application.Game;
 using WebGames.Application.Game.Commands.CreateGame;
+using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
 using WebGames.Application.Game.Queries.GetAllGames;
 using WebGames.Application.Game.Queries.GetGameByEncodedName;
@@ -45,6 +46,25 @@ namespace WebGames.MVC.Controllers
         [HttpPost]
         [Route("{encodedName}/edit")]
         public async Task<IActionResult> Edit(EditGameCommand model)
+        {
+            if (ModelState.IsValid == false) return View(model);
+
+            await mediator.Send(model);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Route("{encodedName}/delete")]
+        public async Task<IActionResult> Delete(string encodedName)
+        {
+            var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
+
+            DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
+            return View(model);
+        }
+        
+        [HttpPost]
+        [Route("{encodedName}/delete")]
+        public async Task<IActionResult> Delete(DeleteGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 

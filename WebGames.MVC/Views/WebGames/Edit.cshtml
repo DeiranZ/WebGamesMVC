@@ -29,7 +29,8 @@
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-secondary">Back to Games</a>
+    <a asp-action="Index" class="btn btn-secondary m-3">Back to Games</a>
+    <a asp-action="Delete" class="btn btn-danger m-3" asp-route-encodedName="@Model.EncodedName">Delete</a>
 </div>
 
 @section Scripts {

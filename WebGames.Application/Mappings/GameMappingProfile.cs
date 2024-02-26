@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WebGames.Application.Game;
+using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
 
 namespace WebGames.Application.Mappings
@@ -13,6 +14,8 @@ namespace WebGames.Application.Mappings
             CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
 
             CreateMap<GameDto, EditGameCommand>();
+            
+            CreateMap<GameDto, DeleteGameCommand>();
         }
     }
 }

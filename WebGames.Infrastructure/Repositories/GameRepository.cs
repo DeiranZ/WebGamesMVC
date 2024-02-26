@@ -25,7 +25,19 @@ namespace WebGames.Infrastructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-		public async Task<IEnumerable<Game>> GetAll()
+        public async Task Delete(Game? game)
+        {
+            if (await dbContext.Games.ContainsAsync(game) == false) 
+            {
+                return; 
+            }
+
+            dbContext.Games.Remove(game!);
+            
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Game>> GetAll()
 		{
 			return await dbContext.Games.ToListAsync();
 		}
