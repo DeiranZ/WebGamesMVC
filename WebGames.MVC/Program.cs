@@ -14,8 +14,17 @@ builder.Services.AddApplication();
 var app = builder.Build();
 
 IServiceScope scope = app.Services.CreateScope();
-GameSeeder seeder = scope.ServiceProvider.GetService<GameSeeder>()!;
-await seeder.Seed();
+GameSeeder gameSeeder = scope.ServiceProvider.GetService<GameSeeder>()!;
+await gameSeeder.Seed();
+
+UserSeeder userSeeder = scope.ServiceProvider.GetService<UserSeeder>()!;
+await userSeeder.Seed();
+
+RoleSeeder roleSeeder = scope.ServiceProvider.GetService<RoleSeeder>()!;
+await roleSeeder.Seed();
+
+UserRoleSeeder userRoleSeeder = scope.ServiceProvider.GetService<UserRoleSeeder>()!;
+await userRoleSeeder.Seed();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -35,5 +44,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=WebGames}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

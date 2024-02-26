@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebGames.Application\WebGames.Application.csproj" />
+    <ProjectReference Include="..\WebGames.Domain\WebGames.Domain.csproj" />
     <ProjectReference Include="..\WebGames.Infrastructure\WebGames.Infrastructure.csproj" />
   </ItemGroup>
 

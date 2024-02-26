@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.MVC", "WebGames.MVC\WebGames.MVC.csproj", "{7D6EE3E3-3452-4890-AB0A-351A94C317E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Domain", "WebGames.Domain\WebGames.Domain.csproj", "{A60B4CD6-E536-4B20-AE8A-6E79071D340B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Domain", "WebGames.Domain\WebGames.Domain.csproj", "{A60B4CD6-E536-4B20-AE8A-6E79071D340B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Application", "WebGames.Application\WebGames.Application.csproj", "{0970D17A-615A-4658-A844-5350CA94F1A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Application", "WebGames.Application\WebGames.Application.csproj", "{0970D17A-615A-4658-A844-5350CA94F1A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Infrastructure", "WebGames.Infrastructure\WebGames.Infrastructure.csproj", "{59E7DF52-15D0-4B23-95E2-180860FB02F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Infrastructure", "WebGames.Infrastructure\WebGames.Infrastructure.csproj", "{59E7DF52-15D0-4B23-95E2-180860FB02F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC12FDF8-079F-4199-8C31-D3DD3CF6A161}
 	EndGlobalSection
 EndGlobal

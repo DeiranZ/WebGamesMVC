@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebGames.Domain.Entities;
+using WebGames.Infrastructure.Users;
 
 namespace WebGames.Infrastructure.Persistence
 {
-    public class WebGamesDbContext : DbContext
+    public class WebGamesDbContext : IdentityDbContext<ApplicationUser>
     {
         public WebGamesDbContext(DbContextOptions<WebGamesDbContext> options) : base(options)
         {
@@ -11,5 +13,10 @@ namespace WebGames.Infrastructure.Persistence
         }
 
         public DbSet<Game> Games { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
     }
 }

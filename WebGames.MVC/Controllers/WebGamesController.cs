@@ -27,6 +27,12 @@ namespace WebGames.MVC.Controllers
             return View(games);
         }
 
+        [Route("Home")]
+        public IActionResult Logout()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
         [Route("{encodedName}")]
         public async Task<IActionResult> Play(string encodedName)
         {
