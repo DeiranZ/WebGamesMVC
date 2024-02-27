@@ -29,7 +29,7 @@ namespace WebGames.Infrastructure.Repositories
         {
             if (await dbContext.Games.ContainsAsync(game) == false) 
             {
-                return; 
+                return;
             }
 
             dbContext.Games.Remove(game!);
