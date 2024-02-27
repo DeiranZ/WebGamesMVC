@@ -2,15 +2,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using WebGames.Application.Game;
 using WebGames.Application.Game.Commands.CreateGame;
 using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
 using WebGames.Application.Game.Queries.GetAllGames;
 using WebGames.Application.Game.Queries.GetGameByEncodedName;
 using WebGames.MVC.Extensions;
-using WebGames.MVC.Models;
 
 namespace WebGames.MVC.Controllers
 {
