@@ -1,5 +1,4 @@
-﻿@using System.Security.Claims;
-@model IEnumerable<WebGames.Application.Game.GameDto>
+﻿@model IEnumerable<WebGames.Application.Game.GameDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,20 +6,7 @@
 
 <h1 class="mb-12">All Games</h1>
 
-<p>
-    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-    {
-        <div class="card">
-            <div class="card-header">
-                Moderation Panel
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Welcome, @User.Identity?.Name!</h5>
-                <a asp-action="Create" class="btn btn-primary col-md-3">Add a new Game!</a>
-            </div>
-        </div>
-    }
-</p>
+<partial name="_ModerationPanelPartial" />
 
 <div class="row">
 @foreach (var item in Model) {

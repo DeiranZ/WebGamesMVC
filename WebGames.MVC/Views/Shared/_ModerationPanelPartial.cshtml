@@ -1,0 +1,15 @@
+﻿@{
+@if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+{
+    <div class="card">
+        <div class="card-header">
+            Moderation Panel
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Welcome, @User.Identity?.Name!</h5>
+            <a asp-controller="WebGames" asp-action="Create" class="btn btn-primary col-md-3">New GAME</a>
+            <a asp-controller="Genres" asp-action="Create" class="btn btn-secondary col-md-3">New GENRE</a>
+        </div>
+    </div>
+}
+}

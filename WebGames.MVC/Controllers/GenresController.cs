@@ -37,6 +37,7 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
+        [Route("genres/create")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Create(CreateGenreCommand model)
         {

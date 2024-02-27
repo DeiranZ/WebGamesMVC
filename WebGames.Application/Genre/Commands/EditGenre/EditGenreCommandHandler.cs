@@ -19,7 +19,7 @@ namespace WebGames.Application.Genre.Commands.EditGenre
         {
             var currentUser = userContext.GetCurrentUser();
 
-            if (currentUser == null || (currentUser.IsInRole("Admin") && currentUser.IsInRole("Moderator")))
+            if (currentUser == null || !(currentUser.IsInRole("Admin") || currentUser.IsInRole("Moderator")))
             {
                 return;
             }

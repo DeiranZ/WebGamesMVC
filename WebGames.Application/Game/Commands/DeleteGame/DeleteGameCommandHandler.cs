@@ -19,7 +19,7 @@ namespace WebGames.Application.Game.Commands.DeleteGame
         {
 			var currentUser = userContext.GetCurrentUser();
 
-			if (currentUser == null || (currentUser.IsInRole("Admin") && currentUser.IsInRole("Moderator")))
+			if (currentUser == null || !(currentUser.IsInRole("Admin") || currentUser.IsInRole("Moderator")))
 			{
 				return;
 			}

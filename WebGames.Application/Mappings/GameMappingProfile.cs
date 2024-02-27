@@ -10,16 +10,12 @@ namespace WebGames.Application.Mappings
     {
         public GameMappingProfile()
         {
-            CreateMap<Application.Game.GameDto, Domain.Entities.Game>();
-
-            CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
+            CreateMap<Application.Game.GameDto, Domain.Entities.Game>()
+                .ReverseMap();
 
             CreateMap<GameDto, EditGameCommand>();
             
             CreateMap<GameDto, DeleteGameCommand>();
-
-            CreateMap<GenreDto, Domain.Entities.Genre>()
-                .ReverseMap();
         }
     }
 }

@@ -6,9 +6,7 @@
 
 <h1>Genres</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<partial name="_ModerationPanelPartial" />
 <table class="table">
     <thead>
         <tr>
@@ -37,9 +35,11 @@
                 @Html.DisplayFor(modelItem => item.EncodedName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    {
+                        <a class="btn btn-secondary" asp-controller="Genres" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
+                        <a class="btn btn-danger" asp-controller="Genres" asp-action="Delete" asp-route-encodedName="@item.EncodedName">Delete</a>
+                    }
             </td>
         </tr>
 }
