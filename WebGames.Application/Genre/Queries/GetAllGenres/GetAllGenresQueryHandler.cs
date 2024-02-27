@@ -19,7 +19,7 @@ namespace WebGames.Application.Genre.Queries.GetAllGenres
         public async Task<IEnumerable<GenreDto>> Handle(GetAllGenresQuery request, CancellationToken cancellationToken)
         {
             var games = await genreRepository.GetAll();
-            var genreDtos = mapper.Map<IEnumerable<GameDto>>(games);
+            var genreDtos = mapper.Map<IEnumerable<GenreDto>>(games);
 
             return genreDtos;
         }
