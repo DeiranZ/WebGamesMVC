@@ -28,6 +28,7 @@ namespace WebGames.Infrastructure.Extensions
             services.AddScoped<UserRoleSeeder>();
 
             services.AddScoped<IGameRepository, GameRepository>();
+            services.AddScoped<IGenreRepository, GenreRepository>();
         }
     }
 }

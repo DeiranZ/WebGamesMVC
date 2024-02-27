@@ -15,6 +15,9 @@
 
         public string EncodedName { get; private set; } = default!;
 
+        public List<Genre> Genres { get; } = [];
+        public List<GameGenre> GameGenres { get; } = [];
+
         public void EncodeName()
         {
             EncodedName = Name.ToLower().Replace(" ", "-");

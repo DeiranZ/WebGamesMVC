@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebGames.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using WebGames.Infrastructure.Persistence;
 namespace WebGames.Infrastructure.Migrations
 {
     [DbContext(typeof(WebGamesDbContext))]
-    partial class WebGamesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240227142754_GameGenre")]
+    partial class GameGenre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,6 +296,7 @@ namespace WebGames.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

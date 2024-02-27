@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
-using WebGames.Application.ApplicationUser;
 using WebGames.Application.Game;
 using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
+using WebGames.Application.Genre;
 
 namespace WebGames.Application.Mappings
 {
     public class GameMappingProfile : Profile
     {
-        public GameMappingProfile(IUserContext userContext)
+        public GameMappingProfile()
         {
-            var user = userContext.GetCurrentUser();
-
             CreateMap<Application.Game.GameDto, Domain.Entities.Game>();
 
             CreateMap<Domain.Entities.Game, Application.Game.GameDto>();
@@ -19,6 +17,9 @@ namespace WebGames.Application.Mappings
             CreateMap<GameDto, EditGameCommand>();
             
             CreateMap<GameDto, DeleteGameCommand>();
+
+            CreateMap<GenreDto, Domain.Entities.Genre>()
+                .ReverseMap();
         }
     }
 }

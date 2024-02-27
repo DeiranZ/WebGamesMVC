@@ -21,7 +21,7 @@ namespace WebGames.Application.Extensions
             {
                 var scope = provider.CreateScope();
                 var userContext = scope.ServiceProvider.GetRequiredService<IUserContext>();
-                cfg.AddProfile(new GameMappingProfile(userContext));
+                cfg.AddProfile(new GameMappingProfile());
             }).CreateMapper()
             );
 
