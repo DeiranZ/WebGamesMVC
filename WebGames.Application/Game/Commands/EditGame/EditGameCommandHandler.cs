@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using WebGames.Application.ApplicationUser;
 using WebGames.Domain.Interfaces;
 
