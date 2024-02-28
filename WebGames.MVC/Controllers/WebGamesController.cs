@@ -33,6 +33,11 @@ namespace WebGames.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var games = await mediator.Send(new GetAllGamesQuery());
+            foreach (var game in games)
+            {
+                var genres = await mediator.Send(new GetAllGenresOfGameQuery(game.EncodedName));
+                game.Genres = genres;
+            }
             return View(games);
         }
 

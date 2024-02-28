@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebGames.Application.GameGenre.Queries.GetAllGamesOfGenre;
+using WebGames.Application.GameGenre.Queries.GetAllGenresOfGame;
 using WebGames.Application.Genre.Commands.CreateGenre;
 using WebGames.Application.Genre.Commands.DeleteGenre;
 using WebGames.Application.Genre.Commands.EditGenre;
@@ -34,6 +35,11 @@ namespace WebGames.MVC.Controllers
         public async Task<IActionResult> IndexGenre(string encodedName)
         {
             var games = await mediator.Send(new GetAllGamesOfGenreQuery(encodedName));
+            foreach (var game in games)
+            {
+                var genres = await mediator.Send(new GetAllGenresOfGameQuery(game.EncodedName));
+                game.Genres = genres;
+            }
             return View(games);
         }
 

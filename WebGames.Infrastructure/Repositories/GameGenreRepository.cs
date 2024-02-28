@@ -18,7 +18,11 @@ namespace WebGames.Infrastructure.Repositories
         {
             var genre = await dbContext.Genres.FirstAsync(c => c.EncodedName == encodedName);
             var allGames = await dbContext.Games.ToListAsync();
-            return allGames.Where(c => c.Genres.Contains(genre));
+            var gameGenres = await dbContext.GameGenre.ToListAsync();
+            var query = gameGenres.Where(c => c.GenreId == genre.Id)
+                .Select(c => c.Game);
+
+            return query;
         }
 
         public async Task<IEnumerable<Game>> GetAllGamesOfGenre(Genre genre)

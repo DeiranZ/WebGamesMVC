@@ -4,7 +4,7 @@
     ViewData["Title"] = "IndexGenre";
 }
 
-<h1>Games of genre</h1>
+<h1>Games of genre @ViewContext.RouteData.Values["encodedName"]?.ToString()</h1>
 
 <div class="row">
     @foreach (var item in Model)
@@ -14,6 +14,13 @@
             <div class="card-body">
                 <h5 class="card-title">@item.Name</h5>
                 <p class="card-text">@item.Description</p>
+                <div class="m-1" style="z-index:3; position:relative; align-self: center;">
+                    @foreach (var genre in item.Genres)
+                    {
+                        <a class="btn badge bg-secondary" style="text-decoration:none" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@genre.EncodedName">@genre.Name</a>
+                    }
+                </div>
+                <br />
                 <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
             </div>
             <div style="z-index:3; position:relative; align-self: center;" class="card-footer">

@@ -2,7 +2,6 @@
 using WebGames.Application.Game;
 using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
-using WebGames.Application.Genre;
 
 namespace WebGames.Application.Mappings
 {

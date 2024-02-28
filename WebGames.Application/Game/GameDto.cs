@@ -1,4 +1,6 @@
-﻿namespace WebGames.Application.Game
+﻿using WebGames.Application.Genre;
+
+namespace WebGames.Application.Game
 {
     public class GameDto
     {
@@ -8,6 +10,6 @@
         public string? ImageSource {  get; set; }
         public string EncodedName { get; set; } = default!;
 
-        public List<Domain.Entities.Genre> Genres { get; } = [];
+        public IEnumerable<GenreDto> Genres { get; set; } = [];
     }
 }
