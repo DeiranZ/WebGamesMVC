@@ -18,7 +18,7 @@
                 <div class="m-1" style="z-index:3; position:relative; align-self: center;">
                 @foreach(var genre in item.Genres)
                 {
-                        <a class="btn badge bg-secondary" style="text-decoration:none" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@genre.EncodedName">@genre.Name</a>
+                        <a class="btn badge bg-secondary" data-bs-toggle="tooltip" data-bs-title="@genre.Description" style="text-decoration:none" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@genre.EncodedName">@genre.Name</a>
                 }
                 </div>
                 <br />
@@ -33,3 +33,7 @@
         </div>
 }
 </div>
+
+@section Scripts {
+    <script src="~/js/InitializeTooltips.js"></script>
+}
