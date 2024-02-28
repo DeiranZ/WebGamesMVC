@@ -33,6 +33,18 @@
     </div>
 </div>
 
+<h5>Genres:</h5>
+<div id="genres" class="row" data-encoded-name="@Model.EncodedName"></div>
+
+<div class="btn-group dropend">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Add Genre
+    </button>
+    <ul class="dropdown-menu" id="genres-dropdown" data-encoded-name="@Model.EncodedName">
+        
+    </ul>
+</div>
+
 <div>
     <a asp-action="Index" class="btn btn-secondary m-3">Back to Games</a>
     <a asp-action="Delete" class="btn btn-danger m-3" asp-route-encodedName="@Model.EncodedName">Delete</a>
@@ -40,4 +52,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/js/WebGames/Edit.js"></script>
 }

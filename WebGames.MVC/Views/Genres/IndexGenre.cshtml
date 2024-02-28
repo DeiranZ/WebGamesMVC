@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebGames.Application.Game.GameDto>
+
+@{
+    ViewData["Title"] = "IndexGenre";
+}
+
+<h1>Games of genre</h1>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-3" style="width: 18rem;" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">
+            <img class="card-img-top" src="@item.ImageSource" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Description</p>
+                <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
+            </div>
+            <div style="z-index:3; position:relative; align-self: center;" class="card-footer">
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <a class="btn btn-secondary" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
+                }
+            </div>
+        </div>
+    }
+</div>

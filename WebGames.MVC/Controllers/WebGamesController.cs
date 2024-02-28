@@ -2,11 +2,19 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using WebGames.Application.Game.Commands.CreateGame;
 using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
 using WebGames.Application.Game.Queries.GetAllGames;
 using WebGames.Application.Game.Queries.GetGameByEncodedName;
+using WebGames.Application.GameGenre.Commands.AddGenreToGame;
+using WebGames.Application.GameGenre.Commands.RemoveGenreFromGame;
+using WebGames.Application.GameGenre.Queries.GetAllGenresOfGame;
+using WebGames.Application.GameGenre.Queries.GetAllGenresOfGameExcludingExisting;
+using WebGames.Application.Genre.Queries.GetAllGenres;
+using WebGames.Domain.Entities;
 using WebGames.MVC.Extensions;
 
 namespace WebGames.MVC.Controllers
@@ -47,19 +55,23 @@ namespace WebGames.MVC.Controllers
         }
 
         [Route("{encodedName}/edit")]
-		[Authorize(Roles = "Admin, Moderator")]
-		public async Task<IActionResult> Edit(string encodedName)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Edit(string encodedName)
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
 
+            var genres = await mediator.Send(new GetAllGenresQuery());
+
             EditGameCommand model = mapper.Map<EditGameCommand>(dto);
+            model.AllGenres = genres;
+
             return View(model);
         }
 
         [HttpPost]
         [Route("{encodedName}/edit")]
-		[Authorize(Roles = "Admin, Moderator")]
-		public async Task<IActionResult> Edit(EditGameCommand model)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Edit(EditGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 
@@ -68,19 +80,19 @@ namespace WebGames.MVC.Controllers
         }
 
         [Route("{encodedName}/delete")]
-		[Authorize(Roles = "Admin, Moderator")]
-		public async Task<IActionResult> Delete(string encodedName)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Delete(string encodedName)
         {
             var dto = await mediator.Send(new GetGameByEncodedNameQuery(encodedName));
 
-			DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
+            DeleteGameCommand model = mapper.Map<DeleteGameCommand>(dto);
             return View(model);
         }
-        
+
         [HttpPost]
         [Route("{encodedName}/delete")]
-		[Authorize(Roles = "Admin, Moderator")]
-		public async Task<IActionResult> Delete(DeleteGameCommand model)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Delete(DeleteGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 
@@ -95,8 +107,8 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-		[Authorize(Roles = "Admin, Moderator")]
-		public async Task<IActionResult> Create(CreateGameCommand model)
+        [Authorize(Roles = "Admin, Moderator")]
+        public async Task<IActionResult> Create(CreateGameCommand model)
         {
             if (ModelState.IsValid == false) return View(model);
 
@@ -105,6 +117,46 @@ namespace WebGames.MVC.Controllers
             this.SetNotification("success", "Success!", $"Created game: {model.Name}");
 
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Moderator")]
+        [Route("WebGames/AddGenreToGame/{genreEncodedName}/{gameEncodedName}")]
+        public async Task<IActionResult> AddGenreToGame(string genreEncodedName, string gameEncodedName)
+        {
+            var model = new AddGenreToGameCommand() { GameEncodedname = gameEncodedName, GenreEncodedname = genreEncodedName };
+            await mediator.Send(model);
+            return Ok();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin, Moderator")]
+        [Route("WebGames/RemoveGenreFromGame/{genreEncodedName}/{gameEncodedName}")]
+        public async Task<IActionResult> RemoveGenreFromGame(string genreEncodedName, string gameEncodedName)
+        {
+            var model = new RemoveGenreFromGameCommand() { GameEncodedname = gameEncodedName, GenreEncodedname = genreEncodedName };
+            await mediator.Send(model);
+            return Ok();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, Moderator")]
+        [Route("WebGames/{encodedName}/GetGenres")]
+        public async Task<IActionResult> GetGenresOfGame(string encodedName)
+        {
+            var data = await mediator.Send(new GetAllGenresOfGameQuery(encodedName));
+
+            return Ok(data);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin, Moderator")]
+        [Route("WebGames/{encodedName}/GetAllGenresExcludingExisting")]
+        public async Task<IActionResult> GetAllGenresExcludingExistingOfGame(string encodedName)
+        {
+            var data = await mediator.Send(new GetAllGenresOfGameExcludingExistingQuery(encodedName));
+
+            return Ok(data);
         }
     }
 }

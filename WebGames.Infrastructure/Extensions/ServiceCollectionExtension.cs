@@ -29,6 +29,7 @@ namespace WebGames.Infrastructure.Extensions
 
             services.AddScoped<IGameRepository, GameRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<IGameGenreRepository, GameGenreRepository>();
         }
     }
 }
