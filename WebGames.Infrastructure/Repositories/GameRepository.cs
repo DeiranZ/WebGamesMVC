@@ -39,7 +39,7 @@ namespace WebGames.Infrastructure.Repositories
 
         public async Task<IEnumerable<Game>> GetAll()
 		{
-			return await dbContext.Games.ToListAsync();
+			return await dbContext.Games.OrderByDescending(u => u.Id).ToListAsync();
 		}
 
         public async Task<Game?> GetByEncodedName(string encodedName)

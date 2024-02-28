@@ -2,9 +2,11 @@
 
 @{
     ViewData["Title"] = "IndexGenre";
+    var genreName = @ViewContext.RouteData.Values["encodedName"]?.ToString()!.Replace("-", " ");
+    genreName = char.ToUpper(genreName![0]) + genreName.Substring(1);
 }
 
-<h1>Games of genre @ViewContext.RouteData.Values["encodedName"]?.ToString()</h1>
+<h1>@genreName Games</h1>
 
 <div class="row">
     @foreach (var item in Model)
@@ -21,12 +23,12 @@
                     }
                 </div>
                 <br />
-                <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">Play</a>
+                <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName"><i class="bi bi-play-circle-fill"></i> Play</a>
             </div>
             <div style="z-index:3; position:relative; align-self: center;" class="card-footer">
                 @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
-                    <a class="btn btn-secondary" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
+                    <a class="btn btn-secondary" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName"><i class="bi bi-gear-fill"></i> Edit</a>
                 }
             </div>
         </div>

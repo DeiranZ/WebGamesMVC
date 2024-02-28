@@ -7,12 +7,19 @@
 <h1>@Model.Name</h1>
 <h4 class="text-dark">@Model.Description</h4>
 
-<div class="d-flex justify-content-center m-5"><script src="@Model.Source"></script></div>
+<div id="game" class="d-flex justify-content-center align-self-xl-stretch align-items-xl-center m-5"><script src="@Model.Source"></script></div>
+
+<a class="btn btn-info p-3" id="fullscreen-button"><i class="bi bi-arrows-fullscreen"></i> Fullscreen</a>
 
 <div>
     @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
     {
-        <a class="btn btn-secondary asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName">Edit</a>
+        <a class="btn btn-secondary p-3" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@Model.EncodedName"><i class="bi bi-gear-fill"></i> Edit</a>
     }
-    <a asp-action="Index" class="btn btn-primary">Back to Games</a>
+    <a asp-action="Index" class="btn btn-primary p-3"><i class="bi bi-arrow-left"></i> Back to Games</a>
 </div>
+
+@section Scripts {
+    <script src="~/lib/screenfull.js/screenfull.js"></script>
+    <script src="~/js/WebGames/Play.js"></script>
+}

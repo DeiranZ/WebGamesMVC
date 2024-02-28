@@ -5,6 +5,10 @@
     {
       "library": "toastr.js@2.1.4",
       "destination": "wwwroot/lib/toastr.js/"
+    },
+    {
+      "library": "screenfull.js@5.2.0",
+      "destination": "wwwroot/lib/screenfull.js/"
     }
   ]
 }
