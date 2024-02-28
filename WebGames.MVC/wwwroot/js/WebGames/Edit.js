@@ -64,10 +64,19 @@ function LoadGameGenres() {
 function RenderGenresDropdown(genres, container) {
     container.empty();
 
+    container.append(`<input class="form-control" id="genreSearch" type="text" placeholder="Search..">`);
+
     for (const genre of genres) {
         container.append(`
         <li><button type="button" class="dropdown-item" onclick="AddGenre('${genre.encodedName}', '${container.data("encodedName")}')">${genre.name}</button></li>`)
     }
+
+    $("#genreSearch").on("keyup", function () {
+        var value = $(this).val().toLowerCase();
+        $(".dropdown-menu li").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 }
 
 function LoadOtherGenres() {
