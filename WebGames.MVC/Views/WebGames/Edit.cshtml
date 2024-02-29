@@ -4,6 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 
+<link rel="stylesheet" href="~/css/WebGames/Edit.css" />
+
 <h1>Edit @Model.Name</h1>
 
 <hr />
@@ -44,7 +46,7 @@
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         Add Genre
     </button>
-    <ul class="dropdown-menu" id="genres-dropdown" data-encoded-name="@Model.EncodedName">
+    <ul class="dropdown-menu animate fadeIn" id="genres-dropdown" data-encoded-name="@Model.EncodedName">
         <button class="btn btn-primary" type="button" disabled>
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             <span class="visually-hidden">Loading...</span>
