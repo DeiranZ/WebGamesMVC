@@ -6,7 +6,7 @@
             <img class="card-img-top" src="@item.ImageSource" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title text-dark">@item.Name</h5>
-                <p class="card-text d-sm-block h-45">@item.Description</p>
+                <p class="card-text d-sm-block" style="min-height: 50px;">@item.Description</p>
                 <div class="m-1" style="z-index:3; position:relative; align-self: center;">
                     @foreach (var genre in item.Genres)
                     {

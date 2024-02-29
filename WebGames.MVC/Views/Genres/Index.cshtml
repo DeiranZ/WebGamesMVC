@@ -14,7 +14,7 @@
     <div class="card m-3 card-hover" style="width: 18rem;" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@item.EncodedName">
         <div class="card-body">
             <h5 class="card-title text-dark">@item.Name</h5>
-            <p class="card-text d-sm-block h-45">@item.Description</p>
+            <p class="card-text d-sm-block align-middle" style="min-height: 60px;">@item.Description</p>
             <a class="btn btn-primary col-md-12 stretched-link " asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@item.EncodedName"><i class="bi bi-play-circle-fill"></i> Find Games</a>
         </div>
         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
