@@ -5,7 +5,7 @@ using WebGames.Domain.Interfaces;
 
 namespace WebGames.Application.GameGenre.Queries.GetAllGamesOfGenre
 {
-    public class GetAllGamesOfGenreQueryHandler : IRequestHandler<GetAllGamesOfGenreQuery, IEnumerable<GameDto>>
+    public class GetAllGamesOfGenreQueryHandler : IRequestHandler<GetAllGamesOfGenreQuery, IEnumerable<GameDto>?>
     {
         private readonly IGameGenreRepository gameGenreRepository;
         private readonly IMapper mapper;
@@ -16,9 +16,11 @@ namespace WebGames.Application.GameGenre.Queries.GetAllGamesOfGenre
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<GameDto>> Handle(GetAllGamesOfGenreQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<GameDto>?> Handle(GetAllGamesOfGenreQuery request, CancellationToken cancellationToken)
         {
-            var games = await gameGenreRepository.GetAllGamesOfGenre(request.GenreEncodedName);
+            var games = await gameGenreRepository.GetAllGamesOfGenre(request.GenreEncodedName)!;
+            if (games == null) return null;
+
             var gameDtos = mapper.Map<IEnumerable<GameDto>>(games);
 
             return gameDtos;

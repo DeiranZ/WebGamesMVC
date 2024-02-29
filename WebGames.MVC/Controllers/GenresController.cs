@@ -35,6 +35,12 @@ namespace WebGames.MVC.Controllers
         public async Task<IActionResult> IndexGenre(string encodedName)
         {
             var games = await mediator.Send(new GetAllGamesOfGenreQuery(encodedName));
+            
+            if (games == null)
+            {
+                return View(null);
+            }
+
             foreach (var game in games)
             {
                 var genres = await mediator.Send(new GetAllGenresOfGameQuery(game.EncodedName));
