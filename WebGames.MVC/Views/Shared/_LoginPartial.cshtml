@@ -11,17 +11,17 @@
 
 	@if (signedIn)
 	{
-		<span class="badge rounded-pill bg-info text-dark p-2">Level @userContext.GetCurrentUser()!.Level.ToString()</span>
+		<span class="badge rounded-pill bg-info p-2">Level @userContext.GetCurrentUser()!.Level.ToString()</span>
 		<ul class="navbar-nav">
 			<li class="nav-item">
 			
-				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!
+				<a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!
 				
 				</a>
 			</li>
 			<li class="nav-item">
 				<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new {area = ""})">
-					<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+					<button type="submit" class="nav-link btn btn-link">Logout</button>
 				</form>
 			</li>
 		</ul>
@@ -30,10 +30,10 @@
 	{
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+				<a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+				<a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a>
 			</li>
 		</ul>
 	}

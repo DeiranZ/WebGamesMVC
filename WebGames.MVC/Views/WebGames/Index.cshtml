@@ -14,30 +14,7 @@
     @{
         if (Model.Count() > 0)
         {
-            foreach (var item in Model)
-            {
-                <div class="card m-3 card-hover" style="width: 18rem;" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">
-                    <img class="card-img-top" src="@item.ImageSource" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <p class="card-text">@item.Description</p>
-                        <div class="m-1" style="z-index:3; position:relative; align-self: center;">
-                            @foreach (var genre in item.Genres)
-                            {
-                                <a class="btn badge bg-secondary" data-bs-toggle="tooltip" data-bs-title="@genre.Description" style="text-decoration:none" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@genre.EncodedName">@genre.Name</a>
-                            }
-                        </div>
-                        <br />
-                        <a class="btn btn-primary col-md-12 stretched-link" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName"><i class="bi bi-play-circle-fill"></i> Play</a>
-                    </div>
-                    <div style="z-index:3; position:relative; align-self: center;" class="card-footer">
-                        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-                        {
-                            <a class="btn btn-secondary" asp-controller="WebGames" asp-action="Edit" asp-route-encodedName="@item.EncodedName"><i class="bi bi-gear-fill"></i> Edit</a>
-                        }
-                    </div>
-                </div>
-            }
+            @await Html.PartialAsync("_IndexGamesPartial", Model);
         }
         else
         {
