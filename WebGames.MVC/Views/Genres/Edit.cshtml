@@ -3,29 +3,29 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
-
-<h4>Edit @Model.Name</h4>
+<h1>Edit @Model.Name</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group m-3">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary m-3" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<hr />
+
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary m-3" style="width: 18rem;">Back to List</a>
+    <a asp-action="Delete" class="btn btn-danger m-3" asp-route-encodedName="@Model.EncodedName" style="width: 18rem;">Delete</a>
 </div>
 
 @section Scripts {

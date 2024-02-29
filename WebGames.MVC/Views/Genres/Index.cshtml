@@ -4,44 +4,25 @@
     ViewData["Title"] = "Genres";
 }
 
+<link rel="stylesheet" href="~/css/WebGames/CardHoverScale.css" />
+
 <h1>Genres</h1>
 
 <partial name="_ModerationPanelPartial" />
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EncodedName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="row">
 @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EncodedName)
-            </td>
-            <td>
-                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-                    {
-                        <a class="btn btn-secondary" asp-controller="Genres" asp-action="Edit" asp-route-encodedName="@item.EncodedName">Edit</a>
-                        <a class="btn btn-danger" asp-controller="Genres" asp-action="Delete" asp-route-encodedName="@item.EncodedName">Delete</a>
-                    }
-            </td>
-        </tr>
+    <div class="card m-3 card-hover" style="width: 18rem;" asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@item.EncodedName">
+        <div class="card-body">
+            <h5 class="card-title text-dark">@item.Name</h5>
+            <p class="card-text d-sm-block h-45">@item.Description</p>
+            <a class="btn btn-primary col-md-12 stretched-link " asp-controller="Genres" asp-action="IndexGenre" asp-route-encodedName="@item.EncodedName"><i class="bi bi-play-circle-fill"></i> Find Games</a>
+        </div>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <div style="z-index:3; position:relative; align-self: center;" class="card-footer">
+                <a class="btn btn-secondary" asp-controller="Genres" asp-action="Edit" asp-route-encodedName="@item.EncodedName"><i class="bi bi-gear-fill"></i> Edit</a>
+            </div>
+        }
+    </div>
 }
-    </tbody>
-</table>
+</div>

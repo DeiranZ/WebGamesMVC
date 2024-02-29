@@ -35,28 +35,35 @@
     </div>
 </div>
 
-<h5>Genres:</h5>
-<div id="genres" class="row" data-encoded-name="@Model.EncodedName">
-    <div class="spinner-border m-5" style="width: 3rem; height: 3rem;" role="status">
-        <span class="visually-hidden">Loading...</span>
+<hr />
+
+<div class="bg-body-secondary rounded p-3 shadow-lg">
+    <h4>Genres:</h4>
+    
+    <div class="btn-group dropend">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Add Genre
+        </button>
+        <ul class="dropdown-menu animate fadeIn" id="genres-dropdown" data-encoded-name="@Model.EncodedName">
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+            </button>
+        </ul>
+    </div>
+
+    <div id="genres" class="row" data-encoded-name="@Model.EncodedName">
+        <div class="spinner-border m-5" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
 </div>
 
-<div class="btn-group dropend">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        Add Genre
-    </button>
-    <ul class="dropdown-menu animate fadeIn" id="genres-dropdown" data-encoded-name="@Model.EncodedName">
-        <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span class="visually-hidden">Loading...</span>
-        </button>
-    </ul>
-</div>
+<hr />
 
-<div>
-    <a asp-action="Index" class="btn btn-secondary m-3">Back to Games</a>
-    <a asp-action="Delete" class="btn btn-danger m-3" asp-route-encodedName="@Model.EncodedName">Delete</a>
+<div class="row">
+    <a asp-action="Index" class="btn btn-primary m-3" style="width: 18rem;">Back to List</a>
+    <a asp-action="Delete" class="btn btn-danger m-3" asp-route-encodedName="@Model.EncodedName" style="width: 18rem;">Delete</a>
 </div>
 
 @section Scripts {
