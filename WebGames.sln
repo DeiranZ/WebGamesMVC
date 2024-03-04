@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Application", "Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Infrastructure", "WebGames.Infrastructure\WebGames.Infrastructure.csproj", "{59E7DF52-15D0-4B23-95E2-180860FB02F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Domain.Tests", "WebGames.Domain.Tests\WebGames.Domain.Tests.csproj", "{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{59E7DF52-15D0-4B23-95E2-180860FB02F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59E7DF52-15D0-4B23-95E2-180860FB02F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59E7DF52-15D0-4B23-95E2-180860FB02F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
