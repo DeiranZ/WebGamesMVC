@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGames.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Domain.Tests", "WebGames.Domain.Tests\WebGames.Domain.Tests.csproj", "{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGames.Application.Tests", "WebGames.Application.Tests\WebGames.Application.Tests.csproj", "{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{44C9B624-0C2A-4A2B-B33A-2FBE010EB6CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +43,17 @@ Global
 		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B25D09F3-F5B2-4901-95DC-D1CE5A586BF2} = {44C9B624-0C2A-4A2B-B33A-2FBE010EB6CB}
+		{A0E790E3-D82B-467F-BEE8-7EA3BE4FCDD8} = {44C9B624-0C2A-4A2B-B33A-2FBE010EB6CB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC12FDF8-079F-4199-8C31-D3DD3CF6A161}

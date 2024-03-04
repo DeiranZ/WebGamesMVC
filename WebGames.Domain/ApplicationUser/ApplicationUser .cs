@@ -5,6 +5,6 @@ namespace WebGames.Domain.ApplicationUser
     public class ApplicationUser : IdentityUser
     {
         public string Description { get; set; } = string.Empty;
-        public uint Level { get; set; } = 0;
+        public uint Level { get; set; } = 1;
     }
 }
