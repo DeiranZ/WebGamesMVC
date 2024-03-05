@@ -2,8 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 using WebGames.Application.Game.Commands.CreateGame;
 using WebGames.Application.Game.Commands.DeleteGame;
 using WebGames.Application.Game.Commands.EditGame;
@@ -14,7 +12,6 @@ using WebGames.Application.GameGenre.Commands.RemoveGenreFromGame;
 using WebGames.Application.GameGenre.Queries.GetAllGenresOfGame;
 using WebGames.Application.GameGenre.Queries.GetAllGenresOfGameExcludingExisting;
 using WebGames.Application.Genre.Queries.GetAllGenres;
-using WebGames.Domain.Entities;
 using WebGames.MVC.Extensions;
 
 namespace WebGames.MVC.Controllers
