@@ -2,20 +2,25 @@
 using WebGames.Infrastructure.Persistence;
 using WebGames.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
+using WebGames.Infrastructure.Extensions;
 
 namespace WebGames.Infrastructure.Repositories
 {
     public class GenreRepository : IGenreRepository
     {
+        private readonly IMemoryCache cache;
         private readonly WebGamesDbContext dbContext;
 
-        public GenreRepository(WebGamesDbContext dbContext)
+        public GenreRepository(IMemoryCache cache, WebGamesDbContext dbContext)
         {
+            this.cache = cache;
             this.dbContext = dbContext;
         }
 
         public Task Commit()
         {
+            cache.Remove(CacheHelpers.GenerateGenresCacheKey());
             return dbContext.SaveChangesAsync();
         }
 
@@ -23,6 +28,7 @@ namespace WebGames.Infrastructure.Repositories
         {
             dbContext.Genres.Add(genre);
             await dbContext.SaveChangesAsync();
+            cache.Remove(CacheHelpers.GenerateGenresCacheKey());
         }
 
         public async Task Delete(Genre? genre)
@@ -35,11 +41,16 @@ namespace WebGames.Infrastructure.Repositories
             dbContext.Genres.Remove(genre!);
 
             await dbContext.SaveChangesAsync();
+            cache.Remove(CacheHelpers.GenerateGenresCacheKey());
         }
 
         public async Task<IEnumerable<Genre>> GetAll()
         {
-            return await dbContext.Genres.ToListAsync();
+            return (await cache.GetOrCreateAsync(CacheHelpers.GenerateGenresCacheKey(), async entry =>
+            {
+                entry.SlidingExpiration = CacheHelpers.DefaultCacheDuration;
+                return await dbContext.Genres.ToListAsync();
+            })) ?? new List<Genre>();
         }
 
         public async Task<Genre?> GetByEncodedName(string encodedName)

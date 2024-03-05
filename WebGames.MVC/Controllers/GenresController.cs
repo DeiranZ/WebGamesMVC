@@ -24,14 +24,14 @@ namespace WebGames.MVC.Controllers
             this.mapper = mapper;
         }
 
-        [Route("genres")]
+        [Route("all-genres")]
         public async Task<IActionResult> Index()
         {
             var genres = await mediator.Send(new GetAllGenresQuery());
             return View(genres);
         }
 
-        [Route("genres/{encodedName}")]
+        [Route("genre/{encodedName}")]
         public async Task<IActionResult> IndexGenre(string encodedName)
         {
             var games = await mediator.Send(new GetAllGamesOfGenreQuery(encodedName));
@@ -49,7 +49,7 @@ namespace WebGames.MVC.Controllers
             return View(games);
         }
 
-        [Route("genres/create")]
+        [Route("genre/create")]
         [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Create()
         {
@@ -57,7 +57,7 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("genres/create")]
+        [Route("genre/create")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Create(CreateGenreCommand model)
         {
@@ -70,7 +70,7 @@ namespace WebGames.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("genres/{encodedName}/edit")]
+        [Route("genre/{encodedName}/edit")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(string encodedName)
         {
@@ -81,7 +81,7 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("genres/{encodedName}/edit")]
+        [Route("genre/{encodedName}/edit")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Edit(EditGenreCommand model)
         {
@@ -91,7 +91,7 @@ namespace WebGames.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("genres/{encodedName}/delete")]
+        [Route("genre/{encodedName}/delete")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(string encodedName)
         {
@@ -102,7 +102,7 @@ namespace WebGames.MVC.Controllers
         }
 
         [HttpPost]
-        [Route("genres/{encodedName}/delete")]
+        [Route("genre/{encodedName}/delete")]
         [Authorize(Roles = "Admin, Moderator")]
         public async Task<IActionResult> Delete(DeleteGenreCommand model)
         {
