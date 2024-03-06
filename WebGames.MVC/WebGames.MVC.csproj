@@ -21,4 +21,8 @@
     <ProjectReference Include="..\WebGames.Infrastructure\WebGames.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\gameImages\" />
+  </ItemGroup>
+
 </Project>

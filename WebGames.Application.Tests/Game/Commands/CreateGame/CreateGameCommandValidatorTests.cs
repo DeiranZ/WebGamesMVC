@@ -1,8 +1,8 @@
 ﻿using Xunit;
 using Moq;
 using FluentValidation.TestHelper;
-using WebGames.Application.Genre.Commands.CreateGenre;
 using WebGames.Domain.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace WebGames.Application.Game.Commands.CreateGame.Tests
 {
@@ -15,7 +15,16 @@ namespace WebGames.Application.Game.Commands.CreateGame.Tests
 
             var repositoryMock = new Mock<IGameRepository>();
 
-            var validator = new CreateGameCommandValidator(repositoryMock.Object);
+			IEnumerable<KeyValuePair<string, string>> appsettings = new Dictionary<string, string>
+			{
+				{ "ImageSizeLimit", "2097152" }
+			};
+
+			IConfiguration configuration = new ConfigurationBuilder()
+				.AddInMemoryCollection(appsettings!)
+				.Build();
+
+			var validator = new CreateGameCommandValidator(repositoryMock.Object, configuration);
 
             var command = new CreateGameCommand()
             {
@@ -40,9 +49,18 @@ namespace WebGames.Application.Game.Commands.CreateGame.Tests
 
             var repositoryMock = new Mock<IGameRepository>();
 
-            var validator = new CreateGameCommandValidator(repositoryMock.Object);
+			IEnumerable<KeyValuePair<string, string>> appsettings = new Dictionary<string, string>
+			{
+				{ "ImageSizeLimit", "2097152" }
+			};
 
-            var command = new CreateGameCommand()
+			IConfiguration configuration = new ConfigurationBuilder()
+				.AddInMemoryCollection(appsettings!)
+				.Build();
+
+			var validator = new CreateGameCommandValidator(repositoryMock.Object, configuration);
+
+			var command = new CreateGameCommand()
             {
                 Name = "",
                 Description = new string('\t', 32768),
@@ -67,10 +85,18 @@ namespace WebGames.Application.Game.Commands.CreateGame.Tests
 
             var repositoryMock = new Mock<IGameRepository>();
 
+            IEnumerable<KeyValuePair<string, string>> appsettings = new Dictionary<string, string>
+            {
+                { "ImageSizeLimit", "2097152" }
+            };
 
-            var validator = new CreateGameCommandValidator(repositoryMock.Object);
+            IConfiguration configuration = new ConfigurationBuilder()
+				.AddInMemoryCollection(appsettings!)
+				.Build();
 
-            var command = new CreateGameCommand()
+			var validator = new CreateGameCommandValidator(repositoryMock.Object, configuration);
+
+			var command = new CreateGameCommand()
             {
                 Name = "",
                 Description = new string('\t', 32768),

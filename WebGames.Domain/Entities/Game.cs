@@ -9,6 +9,7 @@
 
         public string? Source { get; set; }
         public string? ImageSource { get; set; }
+        public string? ImageName {  get; set; }
 
         public string? CreatedById { get; set; }
         public ApplicationUser.ApplicationUser? CreatedBy { get; set; }

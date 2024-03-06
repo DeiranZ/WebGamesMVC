@@ -11,6 +11,7 @@ using WebGames.Application.ApplicationUser;
 using WebGames.Application.Genre.Commands.CreateGenre;
 using WebGames.Domain.Interfaces;
 using WebGames.Application.Mappings;
+using Microsoft.AspNetCore.Hosting;
 
 namespace WebGames.Application.Game.Commands.CreateGame.Tests
 {
@@ -39,7 +40,9 @@ namespace WebGames.Application.Game.Commands.CreateGame.Tests
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(new GameMappingProfile()));
             var mapper = configuration.CreateMapper();
 
-            var handler = new CreateGameCommandHandler(gameRepositoryMock.Object, mapper, userContextMock.Object);
+            var webHostEnvironmentMock = new Mock<IWebHostEnvironment>(); 
+
+            var handler = new CreateGameCommandHandler(gameRepositoryMock.Object, mapper, userContextMock.Object, webHostEnvironmentMock.Object);
 
             // act
 
@@ -73,7 +76,9 @@ namespace WebGames.Application.Game.Commands.CreateGame.Tests
             var configuration = new MapperConfiguration(cfg => cfg.AddProfile(new GameMappingProfile()));
             var mapper = configuration.CreateMapper();
 
-            var handler = new CreateGameCommandHandler(gameRepositoryMock.Object, mapper, userContextMock.Object);
+			var webHostEnvironmentMock = new Mock<IWebHostEnvironment>();
+
+			var handler = new CreateGameCommandHandler(gameRepositoryMock.Object, mapper, userContextMock.Object, webHostEnvironmentMock.Object);
 
             // act
 

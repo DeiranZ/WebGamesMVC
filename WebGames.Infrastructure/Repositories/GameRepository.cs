@@ -20,6 +20,7 @@ namespace WebGames.Infrastructure.Repositories
 
         public Task Commit()
         {
+            cache.Remove(CacheHelpers.GenerateAllGamesCacheKey());
             return dbContext.SaveChangesAsync();
         }
 

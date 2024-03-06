@@ -3,7 +3,14 @@
     foreach (var item in Model!)
     {
         <div class="card m-3 card-hover h-50" style="width: 18rem;" asp-controller="WebGames" asp-action="Play" asp-route-encodedName="@item.EncodedName">
+        @if (item.ImageName != null)
+            {
+                <img class="card-img-top" src="~/gameImages/@item.ImageName" alt="Card image cap">
+            }
+        else
+        {
             <img class="card-img-top" src="@item.ImageSource" alt="Card image cap">
+        }
             <div class="card-body">
                 <h5 class="card-title text-dark">@item.Name</h5>
                 <p class="card-text d-sm-block" style="min-height: 50px;">@item.Description</p>
