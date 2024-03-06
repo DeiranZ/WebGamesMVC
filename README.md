@@ -68,4 +68,5 @@ dotnet ef database update --project ".\WebGames.Infrastructure\" --startup-proje
 ### Game editing
 ![Game editing view](https://github.com/DeiranZ/WebGamesMVC/assets/40063902/c643a53c-da47-4734-9a4c-bf2db7f6c7d0)
 
-
+### Playing the example game
+![Play view](https://github.com/DeiranZ/WebGamesMVC/assets/40063902/37fed2f3-b6e1-40b1-abee-38ddcad87b18)
