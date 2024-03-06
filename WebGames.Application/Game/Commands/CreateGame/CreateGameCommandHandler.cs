@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
+using System.IO.Compression;
 using WebGames.Application.ApplicationUser;
+using WebGames.Domain.Entities;
 using WebGames.Domain.Interfaces;
 
 namespace WebGames.Application.Game.Commands.CreateGame
@@ -38,21 +40,34 @@ namespace WebGames.Application.Game.Commands.CreateGame
 
             if (request.Image != null)
             {
-                var safeImageName = Path.GetRandomFileName();
-                
                 string ext = string.Empty;
                 if (request.Image.ContentType == "image/jpeg") ext = ".jpeg";
                 else if (request.Image.ContentType == "image/jpg") ext = ".jpg";
                 else if (request.Image.ContentType == "image/png") ext = ".png";
-                
-                var finalImageName = Path.GetFileNameWithoutExtension(safeImageName) + ext;
 
-                newGame.ImageName = finalImageName;
+				var finalImageName = newGame.EncodedName + "_" + DateTime.UtcNow.ToString("yyyy-MM-dd-hh-mm-ss") + ext;
+
+				newGame.ImageName = finalImageName;
 
 				var imagesPath = Path.Combine(webHostEnvironment.WebRootPath, "gameImages");
                 var filePath = Path.Combine(imagesPath, finalImageName);
                 await request.Image.CopyToAsync(new FileStream(filePath, FileMode.Create));
             }
+
+            if (request.SourceFile != null)
+            {
+                var safeSourceFileName = newGame.EncodedName + "_" + DateTime.UtcNow.ToString("yyyy-MM-dd-hh-mm-ss");
+
+                newGame.SourceName = safeSourceFileName;
+
+				var gameFilesPath = Path.Combine(webHostEnvironment.WebRootPath, "gameFiles");
+
+                var gamePath = Path.Combine(gameFilesPath, safeSourceFileName);
+
+                Directory.CreateDirectory(gamePath);
+
+                ZipFile.ExtractToDirectory(request.SourceFile.OpenReadStream(), gamePath);
+			}
 
             await gameRepository.Create(newGame);
         }

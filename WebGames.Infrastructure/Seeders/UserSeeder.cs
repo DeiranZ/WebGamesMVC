@@ -21,7 +21,6 @@ namespace WebGames.Infrastructure.Seeders
                 if (!dbContext.Users.Any())
                 {
                     var userStore = new UserStore<ApplicationUser>(dbContext);
-                    //var userManager = new UserManager<ApplicationUser>(userStore);
 
                     ApplicationUser user = new ApplicationUser()
                     {

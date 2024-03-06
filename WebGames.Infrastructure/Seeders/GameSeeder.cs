@@ -21,7 +21,9 @@ namespace WebGames.Infrastructure.Seeders
                     var exampleGame = new Game()
                     {
                         Name = "Example Game",
-                        Description = "This is an example game"
+                        Description = "This is an example game",
+                        SourceName = "example-game",
+                        ImageName = "example-game.png"
                     };
 
                     exampleGame.EncodeName();

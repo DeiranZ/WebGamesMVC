@@ -19,12 +19,20 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group m-3">
-                <label asp-for="Source" class="control-label"></label>
+                <label asp-for="Source" class="control-label">External Game Source</label>
                 <input asp-for="Source" class="form-control" />
                 <span asp-validation-for="Source" class="text-danger"></span>
             </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label" asp-for="SourceFile">Upload Game (.zip file)</label>
+                <br />
+                <input class="form-control" type="file" asp-for="SourceFile" />
+                <span asp-validation-for="SourceFile" class="text-danger"></span>
+            </div>
+
             <div class="form-group m-3">
-                <label asp-for="ImageSource" class="control-label"></label>
+                <label asp-for="ImageSource" class="control-label">External Image Source</label>
                 <input asp-for="ImageSource" class="form-control" />
                 <span asp-validation-for="ImageSource" class="text-danger"></span>
             </div>

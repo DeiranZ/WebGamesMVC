@@ -9,7 +9,16 @@
 
 <hr/>
 
-<div id="game" class="d-flex justify-content-center align-self-xl-stretch align-items-xl-center m-5"><script src="@Model.Source"></script></div>
+<div id="game" class="d-flex justify-content-center align-self-xl-stretch align-items-xl-center m-5">
+    @if (Model.SourceName != null)
+    {
+        <iframe class="ZMgameFrame" style="min-width: 1024px; min-height: 576px;" src="~/gameFiles/@Model.SourceName/index.html"></iframe>
+    }
+    else
+    {
+        <script src="@Model.Source"></script>
+    }
+</div>
 
 <hr />
 

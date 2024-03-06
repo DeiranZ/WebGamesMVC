@@ -25,7 +25,6 @@ namespace WebGames.Application.Game.Commands.CreateGame
                 .MaximumLength(32767);
 
             RuleFor(p => p.Source)
-                .NotEmpty()
                 .MaximumLength(32767);
 
             RuleFor(p => p.Image!.ContentType)

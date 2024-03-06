@@ -265,6 +265,9 @@ namespace WebGames.Infrastructure.Migrations
                     b.Property<string>("Source")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SourceName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");

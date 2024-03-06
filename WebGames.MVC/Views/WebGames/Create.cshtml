@@ -21,13 +21,20 @@
 			</div>
 
 			<div class="form-group mb-3">
-				<label class="control-label" asp-for="Source">Source</label>
+				<label class="control-label" asp-for="Source">External Game Source</label>
 				<input class="form-control" type="text" asp-for="Source" />
 				<span asp-validation-for="Source" class="text-danger"></span>
 			</div>
 
 			<div class="form-group mb-3">
-				<label class="control-label" asp-for="ImageSource">Image Source</label>
+				<label class="control-label" asp-for="SourceFile">Upload Game (.zip file)</label>
+				<br />
+				<input class="form-control" type="file" asp-for="SourceFile" />
+				<span asp-validation-for="SourceFile" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-3">
+				<label class="control-label" asp-for="ImageSource">External Image Source</label>
 				<input class="form-control" type="text" asp-for="ImageSource" />
 				<span asp-validation-for="ImageSource" class="text-danger"></span>
 			</div>

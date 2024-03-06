@@ -1,6 +1,7 @@
 using WebGames.Infrastructure.Extensions;
 using WebGames.Application.Extensions;
 using WebGames.Infrastructure.Seeders;
+using Microsoft.AspNetCore.StaticFiles;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +36,15 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+
+var provider = new FileExtensionContentTypeProvider();
+
+provider.Mappings[".pck"] = "application/octet-stream";
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    ContentTypeProvider = provider
+});
 
 app.UseRouting();
 
